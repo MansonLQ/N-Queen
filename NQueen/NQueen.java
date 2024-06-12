@@ -4,48 +4,48 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class NQueen {
-    public final static int N = 8;
+    public final static int N = 8; // number of queens on the board
 
-    public static int[] generateRandomState() {
-        int[] state = new int[N];
+    public static int[] generateRandomState() { // generate a random board state
+        int[] state = new int[N]; // states where columns represented by index, rows by values
         Random random = new Random();
 
-        for (int i = 0; i < N; i++) {
-            state[i] = random.nextInt(N);
+        for (int i = 0; i < N; i++) { // one queen per column
+            state[i] = random.nextInt(N); // value of each index is the row where a queen is
         }
 
         return state;
     }
 
-    public static int[][] createBoard(int[] state) {
+    public static int[][] createBoard(int[] state) { // return 2d array based off a given state
         int[][] board = new int[N][N];
 
         for (int i = 0; i < N; i++) {
-            board[state[i]][i] = 1;
+            board[state[i]][i] = 1; // 1's in the 2d array represent queens
         }
 
         return board;
     }
 
-    public static void displayBoard(int[][] board) {
+    public static void displayBoard(int[][] board) { // method to visualize boards
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (board[i][j] == 0) {
-                    System.out.print(" - ");
+                    System.out.print(" - "); // empty tiles
                 } else {
-                    System.out.print(" 1 ");
+                    System.out.print(" 1 "); // queen tiles
                 }
             }
             System.out.println();
         }
     }
 
-    public static void displayState(int[] state) {
+    public static void displayState(int[] state) { // visualize each state
         System.out.println(Arrays.toString(state));
     }
 
     public static int getConflictingQueensCount(int[][] board, int[] state) {
-        int conflicts = 0;
+        int conflicts = 0; // return the number of queens that are attacking eachother
 
         for (int i = 0; i < N; i++) {
             int row;
@@ -116,7 +116,7 @@ public class NQueen {
             }
         }
 
-        int uniqueConflictPairs = conflicts / 2;
+        int uniqueConflictPairs = conflicts / 2; // get unique conflicting pairs by dividing 2
         return uniqueConflictPairs;
 
     }
